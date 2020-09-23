@@ -1,5 +1,4 @@
-from modules.EnglishDetect import *
-from modules.Caesar import *
+from modules.Caesar import CaesarAuto
 
 ciphertext = input("Enter ciphertext: ").upper()
 
@@ -12,5 +11,4 @@ while True:
         break
 
 if menuselection == 1:
-    for s in range(26):
-        print(decrypt(ciphertext, s))
+    print(CaesarAuto(ciphertext))

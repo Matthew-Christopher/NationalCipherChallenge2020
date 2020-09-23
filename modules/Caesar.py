@@ -1,4 +1,4 @@
-def encrypt(text, shift):
+def Encrypt(text, shift):
     text = text.upper()
     result = ""
     for letter in text:
@@ -6,5 +6,12 @@ def encrypt(text, shift):
 
     return result
 
-def decrypt(text, shift):
+def Decrypt(text, shift):
     return encrypt(text, ((26 - shift) % 26 + 26) % 26).lower()
+
+def CaesarAuto(text):
+    decrypts = []
+    for s in range(26):
+        decrypts.append(Decrypt(text, s))
+
+    return(Analyse(decrypts))

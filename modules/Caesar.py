@@ -1,3 +1,5 @@
+from modules.EnglishDetect import SmallKeySpaceAnalyse
+
 def Encrypt(text, shift):
     text = text.upper()
     result = ""
@@ -7,11 +9,11 @@ def Encrypt(text, shift):
     return result
 
 def Decrypt(text, shift):
-    return encrypt(text, ((26 - shift) % 26 + 26) % 26).lower()
+    return Encrypt(text, ((26 - shift) % 26 + 26) % 26).lower()
 
 def CaesarAuto(text):
     decrypts = []
     for s in range(26):
         decrypts.append(Decrypt(text, s))
 
-    return(Analyse(decrypts))
+    return(decrypts[SmallKeySpaceAnalyse(decrypts)])

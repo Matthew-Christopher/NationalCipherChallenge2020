@@ -1,6 +1,7 @@
 from modules.SubmissionTools import CopyForSubmission
 
 from modules.Caesar import CaesarAuto
+from modules.Affine import AtbashAuto
 from modules.Affine import AffineAuto
 
 ciphertext = input("Enter ciphertext: ").upper()
@@ -15,6 +16,8 @@ while True:
 
 if menuSelection == 1:
     answer = CaesarAuto(ciphertext)
+elif menuSelection == 2:
+    answer = AtbashAuto(ciphertext)
 elif menuSelection == 3:
     answer = AffineAuto(ciphertext)
 

@@ -2,7 +2,7 @@ from modules.Caesar import CaesarAuto
 
 ciphertext = input("Enter ciphertext: ").upper()
 
-print("1: Caesar\n2: Atbash\n3: Keyword\n4: Brute force")
+print("1: Caesar\n2: Atbash\n3: Affine\n3: Keyword\n4: Brute force")
 
 menuselection = 0
 while True:

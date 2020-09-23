@@ -16,4 +16,6 @@ def CaesarAuto(text):
     for s in range(26):
         decrypts.append(Decrypt(text, s))
 
-    return(decrypts[SmallKeySpaceAnalyse(decrypts)])
+    optimalFitIndex = SmallKeySpaceAnalyse(decrypts)
+    print(f'Optimsed fit calculated with key {optimalFitIndex}')
+    return(decrypts[optimalFitIndex])

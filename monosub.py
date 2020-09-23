@@ -1,4 +1,5 @@
 from modules.Caesar import CaesarAuto
+from modules.SubmissionTools import CopyForSubmission
 
 ciphertext = input("Enter ciphertext: ").upper()
 
@@ -11,4 +12,7 @@ while True:
         break
 
 if menuselection == 1:
-    print(CaesarAuto(ciphertext))
+    answer = CaesarAuto(ciphertext)
+    CopyForSubmission(answer)
+    print(answer)
+    print('The answer has been copied to the clipboard and is ready for final submission.')

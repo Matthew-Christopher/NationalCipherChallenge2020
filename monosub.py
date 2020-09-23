@@ -1,8 +1,7 @@
 from modules.SubmissionTools import CopyForSubmission
 
 from modules.Caesar import CaesarAuto
-from modules.Affine import AtbashAuto
-from modules.Affine import AffineAuto
+from modules.Affine import AtbashAuto, AffineAuto
 
 ciphertext = input("Enter ciphertext: ").upper()
 

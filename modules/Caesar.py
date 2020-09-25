@@ -1,4 +1,4 @@
-from modules.EnglishDetect import SmallKeySpaceAnalyse
+from modules.EnglishDetect import SmallKeySpaceAnalysis
 
 def Encrypt(text, shift):
     text = text.upper()
@@ -16,6 +16,6 @@ def CaesarAuto(text):
     for s in range(26):
         decrypts.append(Decrypt(text, s))
 
-    optimalFitIndex = SmallKeySpaceAnalyse(decrypts)
+    optimalFitIndex = SmallKeySpaceAnalysis(decrypts)
     print(f'Optimsed fit calculated with key {optimalFitIndex}')
     return(decrypts[optimalFitIndex])

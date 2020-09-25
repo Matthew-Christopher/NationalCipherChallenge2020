@@ -2,7 +2,7 @@ import os.path
 
 DICTIONARY_PATH = os.path.join(os.path.dirname(__file__), 'Dictionary.txt')
 
-def SmallKeySpaceAnalyse(decrypts):
+def SmallKeySpaceAnalysis(decrypts):
     dictionary = []
 
     if not os.path.isfile(DICTIONARY_PATH):
@@ -17,10 +17,10 @@ def SmallKeySpaceAnalyse(decrypts):
     optimisedDecryptionFit = 0
 
     for currentIndex, decrypt in enumerate(decrypts):
-        fit = 0
+        fitness = 0
         for word in decrypt.split(' '):
             if word.lower() in dictionary:
-                fit += 1
+                fitness += 1
 
         if fit > optimisedDecryptionFit:
             optimisedDecryptionIndex = currentIndex

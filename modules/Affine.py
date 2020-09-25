@@ -1,4 +1,4 @@
-from modules.EnglishDetect import SmallKeySpaceAnalyse
+from modules.EnglishDetect import SmallKeySpaceAnalysis
 from modules.Mathematics import MultiplicativeModularInverse
 
 def Encrypt(text, key):
@@ -27,7 +27,7 @@ def AffineAuto(text):
     for key in keys:
         decrypts.append(Decrypt(text, key))
 
-    optimalFitIndex = SmallKeySpaceAnalyse(decrypts)
+    optimalFitIndex = SmallKeySpaceAnalysis(decrypts)
     print(f'Optimsed fit calculated with key {keys[optimalFitIndex]}')
     return(decrypts[optimalFitIndex])
 

@@ -2,7 +2,7 @@ import os.path
 
 DICTIONARY_PATH = os.path.join(os.path.dirname(__file__), 'Dictionary.txt')
 
-def SmallKeySpaceAnalysis(decrypts):
+def DictionaryAnalysis(decrypts):
     dictionary = []
 
     if not os.path.isfile(DICTIONARY_PATH):

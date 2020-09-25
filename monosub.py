@@ -5,7 +5,7 @@ from modules.Affine import AtbashAuto, AffineAuto
 
 ciphertext = input("Enter ciphertext: ").upper()
 
-print("1: Caesar\n2: Atbash\n3: Affine\n3: Keyword\n4: Brute force")
+print("1: Caesar\n2: Atbash\n3: Affine\n4: Keyword\n5: Brute force")
 
 menuselection = 0
 while True:

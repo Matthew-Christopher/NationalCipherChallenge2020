@@ -1,8 +1,11 @@
 import os.path
+import math
 
 DICTIONARY_PATH = os.path.join(os.path.dirname(__file__), 'Dictionary.txt')
 
 def DictionaryAnalysis(decrypts):
+    decrypts = [x.strip() for x in decrypts]
+
     dictionary = []
 
     if not os.path.isfile(DICTIONARY_PATH):
@@ -16,14 +19,17 @@ def DictionaryAnalysis(decrypts):
     optimisedDecryptionIndex = 0
     optimisedDecryptionFit = 0
 
+    lengthToCheck = math.floor(float(len(decrypts[0])) * 0.2)
+
     for currentIndex, decrypt in enumerate(decrypts):
         fitness = 0
-        for word in decrypt.split(' '):
-            if word.lower() in dictionary:
-                fitness += 1
+        for i in range(lengthToCheck):
+            for j in range(i+3, lengthToCheck + 1):
+                if decrypt[i:j] in dictionary:
+                    fitness += 1
 
-        if fit > optimisedDecryptionFit:
+        if fitness > optimisedDecryptionFit:
             optimisedDecryptionIndex = currentIndex
-            optimisedDecryptionFit = fit
+            optimisedDecryptionFit = fitness
 
     return optimisedDecryptionIndex

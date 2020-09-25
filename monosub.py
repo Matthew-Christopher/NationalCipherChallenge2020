@@ -20,7 +20,7 @@ elif menuSelection == 2:
 elif menuSelection == 3:
     answer = AffineAuto(ciphertext)
 
-print(answer)
+print(f"\"{answer}\"")
 
 CopyForSubmission(answer)
 print('The answer has been copied to the clipboard and is ready for final submission.')

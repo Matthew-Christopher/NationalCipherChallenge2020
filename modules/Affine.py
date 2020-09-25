@@ -2,20 +2,18 @@ from modules.EnglishDetect import DictionaryAnalysis
 from modules.Mathematics import MultiplicativeModularInverse
 
 def Encrypt(text, key):
-    text = text.upper()
     result = ""
     for letter in text:
         result += chr((key[0] * ord(letter) - 65 + key[1]) % 26 + 65) if 65 <= ord(letter) and ord(letter) <= 90 else letter
 
-    return result
+    return result.upper()
 
 def Decrypt(text, key):
-    text = text.upper()
     result = ""
     for letter in text:
         result += chr((MultiplicativeModularInverse(key[0], 26) * (ord(letter) + 65 - key[1])) % 26 + 65) if 65 <= ord(letter) and ord(letter) <= 90 else letter
 
-    return result
+    return result.lower()
 
 def AffineAuto(text):
     keys = []
@@ -27,7 +25,7 @@ def AffineAuto(text):
     for key in keys:
         decrypts.append(Decrypt(text, key))
 
-    optimalFitIndex = DictionaryAnalysis(decrypts)
+    optimalFitIndex = DictionaryAnalysis(decrypts, 1)
     print(f'Optimsed fit calculated with key {keys[optimalFitIndex]}')
     return(decrypts[optimalFitIndex])
 

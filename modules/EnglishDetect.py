@@ -3,8 +3,8 @@ import math
 
 DICTIONARY_PATH = os.path.join(os.path.dirname(__file__), 'Dictionary.txt')
 
-def DictionaryAnalysis(decrypts):
-    decrypts = [x.strip() for x in decrypts]
+def DictionaryAnalysis(decrypts, weighting):
+    decrypts = [x.replace(' ', '') for x in decrypts]
 
     dictionary = []
 
@@ -19,12 +19,13 @@ def DictionaryAnalysis(decrypts):
     optimisedDecryptionIndex = 0
     optimisedDecryptionFit = 0
 
-    lengthToCheck = math.floor(float(len(decrypts[0])) * 0.2)
+    print(f"Analysing candidate decryptions with weighting {weighting}")
+    lengthToCheck = math.floor(float(len(decrypts[0])) * weighting)
 
     for currentIndex, decrypt in enumerate(decrypts):
         fitness = 0
         for i in range(lengthToCheck):
-            for j in range(i+3, lengthToCheck + 1):
+            for j in range(i + 3, lengthToCheck + 1):
                 if decrypt[i:j] in dictionary:
                     fitness += 1
 

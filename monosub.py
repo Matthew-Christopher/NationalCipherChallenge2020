@@ -2,6 +2,7 @@ from modules.SubmissionTools import CopyForSubmission
 
 from modules.Caesar import CaesarAuto
 from modules.Affine import AtbashAuto, AffineAuto
+from modules.EnglishDetect import DictionaryAnalysis
 
 ciphertext = input("Enter ciphertext: ").upper()
 

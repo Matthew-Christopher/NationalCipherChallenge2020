@@ -2,7 +2,7 @@ import os.path
 import math
 import re
 
-from modules.trie import Trie
+from modules.trie3rdparty import Trie
 
 DICTIONARY_PATH = os.path.join(os.path.dirname(__file__), 'Dictionary.txt')
 

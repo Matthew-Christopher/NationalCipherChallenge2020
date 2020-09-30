@@ -25,7 +25,7 @@ def AffineAuto(text):
     for key in keys:
         decrypts.append(Decrypt(text, key))
 
-    optimalFitIndex = DictionaryAnalysis(decrypts, 1)
+    optimalFitIndex = DictionaryAnalysis(decrypts)
     print(f'Optimsed fit calculated with key {keys[optimalFitIndex]}')
     return(decrypts[optimalFitIndex])
 

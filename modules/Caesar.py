@@ -16,6 +16,6 @@ def CaesarAuto(text):
     for s in range(26):
         decrypts.append(Decrypt(text, s))
 
-    optimalFitIndex = DictionaryAnalysis(decrypts, 1)
+    optimalFitIndex = DictionaryAnalysis(decrypts)
     print(f'Optimsed fit calculated with key {optimalFitIndex}')
     return(decrypts[optimalFitIndex])

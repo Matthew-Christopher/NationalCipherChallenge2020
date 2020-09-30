@@ -1,9 +1,12 @@
 import os.path
 import math
+import re
+
+from modules.trie import Trie
 
 DICTIONARY_PATH = os.path.join(os.path.dirname(__file__), 'Dictionary.txt')
 
-def DictionaryAnalysis(decrypts, weighting):
+def DictionaryAnalysis(decrypts):
     decrypts = [x.replace(' ', '') for x in decrypts]
 
     dictionary = []
@@ -13,21 +16,20 @@ def DictionaryAnalysis(decrypts, weighting):
         return 0
     else:
         with open(DICTIONARY_PATH) as dictionaryFile:
-            for wordEntry in dictionaryFile:
-                dictionary.append(wordEntry.strip().lower())
+            dictionary = [word.strip().lower() for word in dictionaryFile if len(word.strip()) >= 3] # Match trigrams or longer only.
 
     optimisedDecryptionIndex = 0
     optimisedDecryptionFit = 0
 
-    print(f"Analysing candidate decryptions with weighting {weighting}")
-    lengthToCheck = math.floor(float(len(decrypts[0])) * weighting)
+    print(f"Analysing candidate decryptions")
 
     for currentIndex, decrypt in enumerate(decrypts):
         fitness = 0
-        for i in range(lengthToCheck):
-            for j in range(i + 3, lengthToCheck + 1):
-                if decrypt[i:j] in dictionary:
-                    fitness += 1
+        trie = Trie()
+        for word in dictionary:
+            trie.add(word)
+
+        fitness = len(re.findall(trie.pattern(), decrypt))
 
         if fitness > optimisedDecryptionFit:
             optimisedDecryptionIndex = currentIndex

@@ -10,8 +10,8 @@ print("1: Caesar\n2: Atbash\n3: Affine\n4: Keyword\n5: Brute force")
 
 menuselection = 0
 while True:
-    menuSelection = int(input())
-    if 1 <= menuSelection and menuSelection <= 4:
+    menuSelection = int(input("Enter ciphertext type: "))
+    if 1 <= menuSelection and menuSelection <= 5:
         break
 
 if menuSelection == 1:

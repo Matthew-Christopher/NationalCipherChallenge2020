@@ -1,10 +1,11 @@
 import os.path
-import math
 import re
 
 from modules.Trie import Trie
+from modules.Mathematics import SetLogProbabilities, BaseScore
 
 DICTIONARY_PATH = os.path.join(os.path.dirname(__file__), 'Dictionary.txt')
+QUADGRAM_PATH = os.path.join(os.path.dirname(__file__), 'Quadgrams.txt')
 
 def DictionaryAnalysis(decrypts):
     decrypts = [x.replace(' ', '') for x in decrypts]
@@ -36,3 +37,27 @@ def DictionaryAnalysis(decrypts):
             optimisedDecryptionFit = fitness
 
     return optimisedDecryptionIndex
+
+def QuadgramFitness(candidate):
+    fitness = 0
+
+    quadgramFrequencies = {}
+
+    with open(QUADGRAM_PATH) as quadgramFile:
+        for line in quadgramFile:
+            quadgram, frequency = line.split(' ')
+            quadgramFrequencies[quadgram] = int(frequency)
+
+    total = sum(quadgramFrequencies.values())
+
+    SetLogProbabilities(quadgramFrequencies)
+
+    baseScore = BaseScore(total)
+
+    for i in range(len(candidate) - 3): # Stop before the end of the text.
+        if candidate[i : i+4] in quadgramFrequencies:
+            fitness += quadgramFrequencies[candidate[i : i+4]] # Add the associated log probability to the fitness.
+        else:
+            fitness += baseScore
+
+    return fitness

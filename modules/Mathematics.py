@@ -1,4 +1,6 @@
 import sys
+import math
+
 from typing import Tuple
 sys.setrecursionlimit(1000000)
 
@@ -25,3 +27,13 @@ def GCD(a, b):
     # We calculate the greatest common divisor of two integers a, b by the extended Euclidian Algorithm.
     g, x, y = ExtendedEuclidianAlgorithm(a, b)
     return g
+
+def SetLogProbabilities(quadgramFrequencies):
+    total = sum(quadgramFrequencies.values())
+
+    for quadgram in quadgramFrequencies.keys():
+        absoluteFrequency = quadgramFrequencies[quadgram]
+        quadgramFrequencies[quadgram] = math.log10(float(absoluteFrequency / total))
+
+def BaseScore(total):
+    return math.log10(float(1 / (total * 100)))

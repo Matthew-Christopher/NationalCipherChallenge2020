@@ -4,9 +4,6 @@ from modules.Caesar import CaesarAuto
 from modules.Affine import AtbashAuto, AffineAuto
 from modules.Monoalphabetic import BruteForce
 
-from modules.EnglishDetect import DictionaryAnalysis
-from modules.EnglishDetect import QuadgramFitness
-
 ciphertext = input("Enter ciphertext: ").upper()
 
 print("1: Caesar\n2: Atbash\n3: Affine\n4: Brute Force")

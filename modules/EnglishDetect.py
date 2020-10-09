@@ -7,19 +7,6 @@ from modules.Mathematics import SetLogProbabilities, BaseScore
 DICTIONARY_PATH = os.path.join(os.path.dirname(__file__), 'Dictionary.txt')
 QUADGRAM_PATH = os.path.join(os.path.dirname(__file__), 'Quadgrams.txt')
 
-quadgramFrequencies = {}
-
-with open(QUADGRAM_PATH) as quadgramFile:
-    for line in quadgramFile:
-        quadgram, frequency = line.split(' ')
-        quadgramFrequencies[quadgram] = int(frequency)
-
-total = sum(quadgramFrequencies.values())
-
-SetLogProbabilities(quadgramFrequencies)
-
-baseScore = BaseScore(total)
-
 def DictionaryAnalysis(decrypts):
     decrypts = [x.replace(' ', '') for x in decrypts]
 
@@ -51,13 +38,28 @@ def DictionaryAnalysis(decrypts):
 
     return optimisedDecryptionIndex
 
-def QuadgramFitness(candidate):
-    fitness = 0
+class QuadgramScorer:
+    def __init__(self):
+        self.quadgramFrequencies = {}
 
-    for i in range(len(candidate) - 3): # Stop before the end of the text.
-        if candidate[i : i+4] in quadgramFrequencies:
-            fitness += quadgramFrequencies[candidate[i : i+4]] # Add the associated log probability to the fitness.
-        else:
-            fitness += baseScore
+        with open(QUADGRAM_PATH) as quadgramFile:
+            for line in quadgramFile:
+                quadgram, frequency = line.split(' ')
+                self.quadgramFrequencies[quadgram] = int(frequency)
 
-    return fitness
+        self.total = sum(self.quadgramFrequencies.values())
+
+        SetLogProbabilities(self.quadgramFrequencies)
+
+        self.baseScore = BaseScore(self.total)
+
+    def QuadgramFitness(self, candidate):
+        fitness = 0
+
+        for i in range(len(candidate) - 3): # Stop before the end of the text.
+            if candidate[i : i+4] in self.quadgramFrequencies:
+                fitness += self.quadgramFrequencies[candidate[i : i+4]] # Add the associated log probability to the fitness.
+            else:
+                fitness += self.baseScore
+
+        return fitness

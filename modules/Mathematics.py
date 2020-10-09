@@ -36,4 +36,4 @@ def SetLogProbabilities(quadgramFrequencies):
         quadgramFrequencies[quadgram] = math.log10(float(absoluteFrequency / total))
 
 def BaseScore(total):
-    return math.log10(float(1 / (total * 100)))
+    return math.log10(0.01 / total)

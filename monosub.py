@@ -27,3 +27,5 @@ print(f"\"{answer}\"")
 
 CopyForSubmission(answer)
 print('The answer has been copied to the clipboard and is ready for final submission.')
+
+input('Press any key to quit.')

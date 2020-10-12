@@ -59,4 +59,4 @@ def Decrypt(ciphertext, key):
         print("Malformed key. Aborting.")
         return
 
-    return ''.join([string.ascii_uppercase[key.index(c)] for c in ciphertext if c.isalpha()])
+    return ''.join([string.ascii_uppercase[key.index(c)] if c.isalpha() else c for c in ciphertext])
